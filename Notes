@@ -1,0 +1,200 @@
+Creat react app with out installing without install react globaly
+
+  npx create-react-app
+  --------------------
+in packge.json we will find in dependancies
+dependancies:-
+ "react" install
+ "react-dom": that response to loading component in the browser
+ "react-scripts" : is responsable to run ,build and test out application
+ 
+ --------------------------
+ <h1> HOW REACT WORK</h1>
+ 
+ in public file you will find index.html file that evry thing run in this file (becouse react.js is single page application)
+ 
+ evry comonent run in root
+ <div class="root"></div>
+ in src folde you will find index.js and this file is the entery point to react
+ -----------------------
+ index.js
+  we import app component
+  and React.render(<app />,document.getElementById('root'));
+  
+  the react render app component in the elemnt of id root in index.html
+  
+  you will find
+  import * as serviceworker form './serviceworker';
+   ths for offline content DELETE IT
+  
+  ----------
+  src> app.js
+  this is app component
+  import { react } from 'react';
+  class App extends react.component
+                =
+  import { component } from 'react'
+  class App extends Component { // 
+      render(){ // life cycle method it is requierd becouse it is render the component in browser and return jsx
+        the deffrint in jsx when we want to add class we write className
+        return(
+         <div className="App">
+          <h1> hello world</h1>
+         </div>
+       )
+      }
+  }
+  export defult App;
+  import './app.css'; // is global css
+  
+  =============================================
+  inssaide src folder we create file call component
+  and add file todo.js and write
+  
+  
+  import { component } from 'react'
+  class Todo extends Component { // 
+      render(){ // life cycle method it is requierd becouse it is render the component in browser and return jsx
+        the deffrint in jsx when we want to add class we write className
+        return(
+         <div className="Todo">
+          <h1> hello world form todo componnet</h1>
+         </div>
+       )
+      }
+  }
+  
+  export defult Todo;
+  
+  -------------
+  to display todo component we write in app component
+   import Todo from{'./components/Todo'}'
+   <div className="App">
+          <h1> hello world form App componnet</h1>
+          <Todo />
+         </div>
+   
+  
+  ===================
+  state : diffrent component they can have there own state
+  put alot of time you need state that multiable components need to access
+  
+  
+  
+  import { component } from 'react'
+  
+  class App extends Component {
+      state={
+        todos:[
+                {
+                   id:1,
+                   title:'take out the trash',
+                   completed:false
+                 },
+                 {
+                   id:2,
+                   title:'take out the trash',
+                   completed:false
+                 },
+                 {
+                   id:3,
+                   title:'take out the trash',
+                   completed:false
+                 }
+              ]
+           }
+  
+  
+      render(){ // life cycle method it is requierd becouse it is render the component in browser and return jsx
+        the deffrint in jsx when we want to add class we write className
+        return(
+        console.log(this.state.todos)
+         <div className="App">
+          <h1> hello world</h1>
+          <Todo todos={this.state.todos} /> //pass data to Todo component in html attribute
+         </div>
+       )
+      }
+  }
+  export defult App;
+  
+  ==============================
+  in todo component
+  
+  
+  
+   import { component } from 'react'
+   import { PropTypes } from 'prop-types'; // define class proptype
+  class Todo extends Component { // 
+  
+   ----------------
+    markComplete(e){
+      //to call this method we should write this.complete.bind(this)
+    }
+    //insted for doing bind(this) 
+    markcomplete =(e) =>{
+      console.log(this.props)
+     }
+    ----------------
+      render(){ //  
+       
+       // console.log(this.props.todos) // this will return todos array
+         return this.props.todos.map(  todo =>{
+         // every component in loop we will call it more than one time we should add 
+         property key and shuold be uniqe 
+            <TodoItem key={todo.id} todo={todo} markComplete={this.markComplete} />
+         })
+      }
+  }
+  Todo.propTypes ={
+   rodos : PropType.array.isRequired
+  
+  ===========================
+  import { PropTypes } from 'prop-types';
+  make TodoItem component
+  class TodoItem extends component {
+      
+  getStyle(){
+      if(this.props.todo.completed){ 
+        return {
+                 textDecoration: 'line-through'
+               }
+         }else{
+            return { textDecoration:'none'}
+         }
+      }
+   
+    render(){
+      return(
+       //inline style
+        <div style={{backgroundColor:'red'}}>
+          <input type="checkbox" onChange={this.markComplete.bind(this)}/> {' '} // this for space
+          insted of doing that
+          <input type="checkbox" onChange={this.props.markComplete}/>
+          <p style={itemStyle}>{this.props.todo.title}</p>
+          <p style={this.getStyle()}>bla bla bla</p>
+        </div>
+        )
+       } 
+  TodoItem.propTypes ={
+   todo:PropTypes.object.isRequired
+   }
+  const itemStyle ={
+    backgroundColor:'blue',
+   }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
