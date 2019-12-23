@@ -184,11 +184,25 @@ dependancies:-
    }
   
   
+  ======================================================================================
+  props : is the data that pass to component by parent components => from parent to chield(any parent)
+  
+  state : by defulet equal Null
   
   
+  --------------
+  if state or props of any component change the component will be render and all chield components in  the currunt component
   
+  * the only place we set the state of component to object just in constructor of component for INSTANSE
   
+   import { PropTypes } from 'prop-types';
+  make TodoItem component
+  class TodoItem extends component {
   
+      constructor(props){
+          supur(props);
+          this.state= { name : 'ali' }
+      }
   
   
   
